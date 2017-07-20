@@ -188,7 +188,7 @@ class MRZ(object):
 
         result = OrderedDict()
         result['mrz_type'] = self.mrz_type
-        result['valid_score'] = self.valid_score
+        result['valid_score'] = str(self.valid_score)
         if self.mrz_type is not None:
             result['type'] = self.type
             result['country'] = self.country

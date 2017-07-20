@@ -5,7 +5,7 @@ Command-line scripts
 Author: Konstantin Tretyakov
 License: MIT
 '''
-import argparse, time, glob, pkg_resources, os, multiprocessing, logging, json, shutil
+import argparse, time, glob, pkg_resources, os, multiprocessing, logging, json, shutil, re
 from collections import Counter
 from skimage import io
 import passporteye
@@ -132,8 +132,7 @@ def mrz():
     if args.save_roi is not None and mrz is not None and 'roi' in mrz.aux:
         io.imsave(args.save_roi, mrz.aux['roi'])
 
-    if not args.json:
-        for k in d:
-            print("%s\t%s" % (k, str(d[k])))
-    else:
-        print(json.dumps(d, indent=2))
+    for key, value in d.iteritems():
+      d[key]=re.sub(r'[^\x00-\x7f]', "", str(value))
+
+    print(json.dumps(d))
