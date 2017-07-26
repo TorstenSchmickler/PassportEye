@@ -191,14 +191,14 @@ class MRZ(object):
         result['valid_score'] = str(self.valid_score)
         if self.mrz_type is not None:
             result['type'] = self.type
-            result['country'] = self.country
-            result['number'] = self.number
+            result['document_country'] = self.country
+            result['serial_number'] = self.number
             result['date_of_birth'] = self.date_of_birth
-            result['expiration_date'] = self.expiration_date
-            result['nationality'] = self.nationality
-            result['sex'] = self.sex
-            result['names'] = self.names
-            result['surname'] = self.surname
+            result['expires_at'] = self.expiration_date
+            result['citizenship'] = self.nationality
+            result['gender'] = self.sex
+            result['first_name'] = self.names
+            result['last_name'] = self.surname
             if self.mrz_type == 'TD1':
                 result['optional1'] = self.optional1
                 result['optional2'] = self.optional2
@@ -500,4 +500,3 @@ class MRZCheckDigit(object):
         if getattr(MRZCheckDigit, '__instance__', None) is None:
             MRZCheckDigit.__instance__ = MRZCheckDigit()
         return MRZCheckDigit.__instance__(txt)
-
